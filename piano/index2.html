@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="piano">
+        <div class="key key-w" data-note="C">C</div>
+        <div class="key key-b" data-note="Cs">C#</div>
+        <div class="key key-w" data-note="D">D</div>
+        <div class="key key-b" data-note="Ds">D#</div>
+        <div class="key key-w" data-note="E">E</div>
+        <div class="key key-w" data-note="F">F</div>
+        <div class="key key-b" data-note="Fs">F#</div>
+        <div class="key key-w" data-note="G">G</div>
+        <div class="key key-b" data-note="Gs">G#</div>
+        <div class="key key-w" data-note="A">A</div>
+        <div class="key key-b" data-note="As">A#</div>
+        <div class="key key-w" data-note="B">B</div>
+       </div>
+       
+       <audio id="C" src="https://res.cloudinary.com/dspfsamgq/video/upload/v1584002889/piano/C.wav"></audio>
+       <audio id="Cs" src="https://res.cloudinary.com/dspfsamgq/video/upload/v1584002889/piano/Cs.wav"></audio>
+       <audio id="D" src="https://res.cloudinary.com/dspfsamgq/video/upload/v1584002888/piano/D.wav"></audio>
+       <audio id="Ds" src="https://res.cloudinary.com/dspfsamgq/video/upload/v1584002889/piano/Ds.wav"></audio>
+       <audio id="E" src="https://res.cloudinary.com/dspfsamgq/video/upload/v1584002889/piano/E.wav"></audio>
+       <audio id="F" src="https://res.cloudinary.com/dspfsamgq/video/upload/v1584002890/piano/F.wav"></audio>
+       <audio id="Fs" src="https://res.cloudinary.com/dspfsamgq/video/upload/v1584002889/piano/Fs.wav"></audio>
+       <audio id="G" src="https://res.cloudinary.com/dspfsamgq/video/upload/v1584002889/piano/G.wav"></audio>
+       <audio id="Gs" src="https://res.cloudinary.com/dspfsamgq/video/upload/v1584002889/piano/Gs.wav"></audio>
+       <audio id="A" src="https://res.cloudinary.com/dspfsamgq/video/upload/v1584002888/piano/A.wav"></audio>
+       <audio id="As" src="https://res.cloudinary.com/dspfsamgq/video/upload/v1584002888/piano/As.wav"></audio>
+       <audio id="B" src="https://res.cloudinary.com/dspfsamgq/video/upload/v1584002889/piano/B.wav"></audio>
+       <style>
+           * {
+ margin: 0;
+ padding: 0;
+ box-sizing: border-box;
+}
+body {
+ background: #1976D2;
+}
+.piano {
+ width: 700px;
+ height: 400px;
+ margin:50px auto;
+ display:flex;
+}
+.key {
+ width: 100px;
+ height: 100%;
+ border:2px solid #000;
+ border-radius: 0 0 5px 5px;
+ cursor: pointer;
+ box-shadow: inset -2px -2px 5px #000;
+ text-align: center;
+ font-size: 40px;
+ font-family: sans-serif;
+ font-weight: bold;
+ background: #fff;
+ user-select: none;
+ transition: .1s;
+ display: flex;
+ align-items: flex-end;
+ justify-content: center;
+}
+.key-b {
+ width: 70px;
+ background: #000;
+ font-size: 30px;
+ color:#fff;
+ height: 60%;
+ margin-left: -35px;
+ margin-right: -35px;
+ z-index: 2;
+}
+.key.active {
+ background: #ccc;
+}
+.key-b.active {
+ background: #333;
+}
+       </style>  
+       <script>
+           let keys = document.querySelectorAll('.key');
+
+keys.forEach(key => {
+ key.addEventListener('click', playNote);
+});
+
+function playNote(e) {
+ let key = e.target;
+ let note = document.getElementById(key.dataset.note);
+ key.classList.add('active');
+ note.currentTime = 0;
+ note.play();
+ note.addEventListener('ended',() => {
+  key.classList.remove('active');
+ });
+}
+       </script>
+</body>
+</html>
